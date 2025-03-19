@@ -1,14 +1,12 @@
-import { ScrollView, StyleSheet, Text } from 'react-native'
+
 import React from 'react'
-import "./global.css"
+import './global.css'
+import Index from './src/Index'
 const App = () => {
   return (
-    < ScrollView>
-      <Text className=' text-red-700'>App</Text>
-    </ScrollView>
+    <Index />
   )
 }
 
 export default App
 
-const styles = StyleSheet.create({})
