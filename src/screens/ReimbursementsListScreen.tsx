@@ -3,6 +3,7 @@ import { ReimbursementCard } from '../components/ReimbursementCard';
 import { reimbursements } from '../data/reimbursements';
 import { CustomSearchBar } from '../components/CustomSearchBar';
 import { useState, useEffect } from 'react';
+import { FloatingAddButton } from '../components/FloatingAddButton';
 
 export const ReimbursementsListScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,6 +51,7 @@ export const ReimbursementsListScreen = () => {
           )}
         />
       )}
+      <FloatingAddButton />
     </View>
   );
 };
