@@ -1,6 +1,6 @@
-import { View, Text } from 'react-native';
-import { getInitials } from '../utils/getInitials';
-import { getMerchantColor } from '../utils/getRandomColor';
+import {View, Text} from 'react-native';
+import {getInitials} from '../utils/getInitials';
+import {getMerchantColor} from '../utils/getRandomColor';
 
 type Props = {
   merchant: string;
@@ -26,7 +26,7 @@ export const ReimbursementCard = ({
       <View className="flex-row items-center space-x-4 flex-1 gap-4">
         <View
           className="w-12 h-12 rounded-full items-center justify-center"
-          style={{ backgroundColor: `rgb(${bgColor})` }}>
+          style={{backgroundColor: `rgb(${bgColor})`}}>
           <Text className="text-white font-bold text-lg">{initials}</Text>
         </View>
         <View>
