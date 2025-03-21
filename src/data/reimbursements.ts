@@ -1,0 +1,22 @@
+export const reimbursements = [
+  { id: 1, merchant: 'Uber', amount: 95.50, baseAmount: 120.00, status: 'Pending', currency: 'USD' },
+  { id: 2, merchant: 'Starbucks', amount: 40.00, baseAmount: 60.00, status: 'Approved', currency: 'EUR' },
+  { id: 3, merchant: 'McDonald’s', amount: 68.25, baseAmount: 80.00, status: 'Rejected', currency: 'INR' },
+  { id: 4, merchant: 'Tata Motors', amount: 70.00, baseAmount: 95.00, status: 'Approved', currency: 'INR' },
+  { id: 5, merchant: 'Zomato', amount: 55.60, baseAmount: 75.00, status: 'Pending', currency: 'INR' },
+  { id: 6, merchant: 'Amazon', amount: 190.00, baseAmount: 220.00, status: 'Approved', currency: 'USD' },
+  { id: 7, merchant: 'Swiggy', amount: 35.00, baseAmount: 50.00, status: 'Rejected', currency: 'INR' },
+  { id: 8, merchant: 'Ola', amount: 110.75, baseAmount: 130.00, status: 'Pending', currency: 'USD' },
+  { id: 9, merchant: 'Flipkart', amount: 125.00, baseAmount: 150.00, status: 'Approved', currency: 'INR' },
+  { id: 10, merchant: 'Domino’s', amount: 42.00, baseAmount: 60.00, status: 'Pending', currency: 'INR' },
+  { id: 11, merchant: 'BookMyShow', amount: 20.00, baseAmount: 30.00, status: 'Approved', currency: 'INR' },
+  { id: 12, merchant: 'Netflix', amount: 15.00, baseAmount: 25.00, status: 'Rejected', currency: 'USD' },
+  { id: 13, merchant: 'Google Pay', amount: 75.00, baseAmount: 90.00, status: 'Approved', currency: 'USD' },
+  { id: 14, merchant: 'Apple', amount: 300.00, baseAmount: 350.00, status: 'Pending', currency: 'USD' },
+  { id: 15, merchant: 'BigBasket', amount: 85.00, baseAmount: 100.00, status: 'Approved', currency: 'INR' },
+  { id: 16, merchant: 'Nykaa', amount: 60.00, baseAmount: 85.00, status: 'Rejected', currency: 'INR' },
+  { id: 17, merchant: 'Paytm', amount: 45.00, baseAmount: 55.00, status: 'Pending', currency: 'INR' },
+  { id: 18, merchant: 'Reliance Trends', amount: 150.00, baseAmount: 180.00, status: 'Approved', currency: 'INR' },
+  { id: 19, merchant: 'Air bnb', amount: 500.00, baseAmount: 600.00, status: 'Pending', currency: 'USD' },
+  { id: 20, merchant: 'Make My Trip', amount: 250.00, baseAmount: 300.00, status: 'Approved', currency: 'INR' }
+];
