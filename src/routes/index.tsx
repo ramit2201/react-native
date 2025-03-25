@@ -2,7 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {ReimbursementsListScreen} from '../screens/ReimbursementsListScreen';
-import {CreateClaimFormScreen} from '../screens/CreateClaimFormScreen'; // Placeholder for now
+import CreateClaimFormScreen from '../screens/CreateClaimFormScreen';
 
 const Stack = createNativeStackNavigator();
 
