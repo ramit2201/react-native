@@ -10,14 +10,14 @@ import {
 import DocumentPicker from 'react-native-document-picker';
 import Pdf from 'react-native-pdf'; // Import PDF Viewer
 import uploadIcon from '../assets/images/upload-solid.png';
-import plusIcon from '../assets/images/plus.png';
+// import  npx react-native start  from '../assets/images/plus.png';
 import trashIcon from '../assets/images/trash.png';
-
+import CurrencyDropdown from '../components/CurrencyDropdown';
 const MAX_FILES = 2; // Maximum number of files allowed
 
 const CreateClaimFormScreen = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
-
+  const [currency, setCurrency] = useState("SGD");
   const pickFile = async () => {
     try {
       const res = await DocumentPicker.pick({
@@ -27,7 +27,7 @@ const CreateClaimFormScreen = () => {
       const file = res[0]; // Get the first file
 
       // File Validation (5MB limit)
-      if (file.size > 5 * 1024 * 1024) {
+      if (file?.size > 5 * 1024 * 1024) {
         Alert.alert('File too large', 'Please select a file under 5MB.');
         return;
       }
@@ -108,7 +108,7 @@ const CreateClaimFormScreen = () => {
               className="bg-red-500 rounded-full w-10 h-10 flex items-center justify-center"
             >
               <Image 
-                source={trashIcon} 
+                // source={trashIcon} 
                 style={{ width: 20, height: 20, tintColor: 'white' }} 
                 resizeMode="contain" 
               />
@@ -121,6 +121,15 @@ const CreateClaimFormScreen = () => {
           Only PDFs & images (JPEG, PNG), up to 5MB. Max {MAX_FILES} files.
         </Text>
       </View>
+
+      <View>
+        <Text>Currency</Text>
+        <CurrencyDropdown
+          selectedCurrency={currency}
+          onCurrencyChange={setCurrency}
+        />
+      </View>
+
     </ScrollView>
   );
 };
