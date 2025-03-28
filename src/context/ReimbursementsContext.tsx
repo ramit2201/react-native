@@ -9,7 +9,7 @@ export const ReimbursementsProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState(initialReimbursements);
 
   useEffect(() => {
-    console.log('🔍 Reimbursements updated:', reimbursements);
+    
 
     if (searchQuery.trim() === '') {
       setFilteredData(reimbursements);
@@ -22,7 +22,6 @@ export const ReimbursementsProvider = ({ children }) => {
   }, [searchQuery, reimbursements]);
 
   const addReimbursement = (newReimbursement) => {
-    console.log('🚀 Adding new reimbursement:', newReimbursement);
     setReimbursements((prev) => [newReimbursement, ...prev]);
   };
 

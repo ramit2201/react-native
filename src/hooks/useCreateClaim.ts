@@ -34,12 +34,9 @@ export const useCreateClaim = () => {
       }
 
       setSelectedFiles([...selectedFiles, file]);
-      console.log('Picked File:', file);
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
-        console.log('User canceled document picker');
       } else {
-        console.error('Error picking file:', err);
       }
     }
   };
@@ -50,7 +47,6 @@ export const useCreateClaim = () => {
 
   const handleSubmit = () => {
     if (!merchant || !amount || !currency) {
-      console.log('❌ Form submission prevented - missing fields');
       return;
     }
     const newReimbursement = {
@@ -62,7 +58,6 @@ export const useCreateClaim = () => {
       currency,
     };
 
-    console.log('📝 Submitting new reimbursement:', newReimbursement);
 
     addReimbursement(newReimbursement);
     resetForm();
@@ -71,7 +66,6 @@ export const useCreateClaim = () => {
 
   const handleDraft = () => {
     if (!merchant || !amount || !currency) {
-      console.log('❌ Draft saving prevented - missing fields');
       return;
     }
     const newReimbursement = {
@@ -83,7 +77,6 @@ export const useCreateClaim = () => {
       currency,
     };
 
-    console.log('📝 Saving draft reimbursement:', newReimbursement);
 
     addReimbursement(newReimbursement);
     resetForm();

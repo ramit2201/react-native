@@ -9,7 +9,6 @@ import { useNavigation } from '@react-navigation/native';
 export const ReimbursementsListScreen = () => {
   const { searchQuery, setSearchQuery, filteredData } = useReimbursements(); // ⬅️ Clean logic
   const navigation = useNavigation();
-  console.log("Filtered data" + JSON.stringify(filteredData,null,2));
   return (
     <View className="flex-1 bg-white px-2 pt-2">
       <View className="rounded-xl overflow-hidden border border-gray-300 mb-2">
