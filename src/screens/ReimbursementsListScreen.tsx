@@ -2,14 +2,14 @@ import { View, FlatList, Text, Image } from 'react-native';
 import { ReimbursementCard } from '../components/ReimbursementCard';
 import { CustomSearchBar } from '../components/CustomSearchBar';
 import { FloatingAddButton } from '../components/FloatingAddButton';
-import { useReimbursements } from '../hooks/useReimbursements'; // ⬅️ Custom hook
+import { useReimbursements } from '../context/ReimbursementsContext'; // ⬅️ Custom hook
 import notFound from '../assets/images/notFound.png';
 import { useNavigation } from '@react-navigation/native';
 
 export const ReimbursementsListScreen = () => {
   const { searchQuery, setSearchQuery, filteredData } = useReimbursements(); // ⬅️ Clean logic
   const navigation = useNavigation();
-
+  console.log("Filtered data" + JSON.stringify(filteredData,null,2));
   return (
     <View className="flex-1 bg-white px-2 pt-2">
       <View className="rounded-xl overflow-hidden border border-gray-300 mb-2">

@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useReimbursements } from '../context/ReimbursementsContext';
 import DocumentPicker from 'react-native-document-picker';
 import Pdf from 'react-native-pdf'; // PDF Viewer
 import uploadIcon from '../assets/images/upload-solid.png';
@@ -22,7 +24,8 @@ const CreateClaimFormScreen = () => {
   const [currency, setCurrency] = useState('');
   const [merchant, setMerchant] = useState('');
   const [amount, setAmount] = useState('');
-
+  const navigation = useNavigation();
+  const { addReimbursement } = useReimbursements();
   const isFormFilled = selectedFiles.length > 0 || currency || merchant || amount;
 
   const pickFile = async () => {
@@ -61,6 +64,31 @@ const CreateClaimFormScreen = () => {
   const removeFile = index => {
     const updatedFiles = selectedFiles.filter((_, i) => i !== index);
     setSelectedFiles(updatedFiles);
+  };
+  const handleSubmit = () => {
+    if (!merchant || !amount || !currency) {
+      console.log('❌ Form submission prevented - missing fields');
+      return;
+    }
+    const newReimbursement = {
+      id: Date.now(), // Unique ID
+      merchant,
+      amount: parseFloat(amount).toFixed(2),
+      baseAmount: (parseFloat(amount) * 1.2).toFixed(2),      status: 'Pending',
+      currency
+    };
+    
+    console.log('📝 Submitting new reimbursement:', newReimbursement);
+    
+    addReimbursement(newReimbursement);
+    
+    // Reset form and navigate
+    setMerchant('');
+    setAmount('');
+    setCurrency('');
+    
+    console.log('🚪 Navigating to Reimbursements screen');
+    navigation.navigate("Reimbursements");
   };
 
   return (
@@ -188,6 +216,7 @@ const CreateClaimFormScreen = () => {
             !isFormFilled ? 'opacity-50 ' : ' '
           }`}
           disabled={!isFormFilled}
+          onPress={handleSubmit}
         >
           <Text
             className={`font-bold text-lg ${
