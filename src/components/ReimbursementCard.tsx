@@ -37,6 +37,8 @@ export const ReimbursementCard = ({
                 ? 'text-green-600'
                 : status === 'Pending'
                 ? 'text-yellow-600'
+                : status === 'Draft'
+                ? 'text-blue-600'
                 : 'text-red-600'
             }`}>
             {status}

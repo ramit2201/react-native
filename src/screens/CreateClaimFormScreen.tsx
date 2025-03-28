@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   Text,
@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useReimbursements } from '../context/ReimbursementsContext';
+import {useNavigation} from '@react-navigation/native';
+import {useReimbursements} from '../context/ReimbursementsContext';
 import DocumentPicker from 'react-native-document-picker';
 import Pdf from 'react-native-pdf'; // PDF Viewer
 import uploadIcon from '../assets/images/upload-solid.png';
@@ -25,8 +25,9 @@ const CreateClaimFormScreen = () => {
   const [merchant, setMerchant] = useState('');
   const [amount, setAmount] = useState('');
   const navigation = useNavigation();
-  const { addReimbursement } = useReimbursements();
-  const isFormFilled = selectedFiles.length > 0 || currency || merchant || amount;
+  const {addReimbursement} = useReimbursements();
+  const isFormFilled =
+    selectedFiles.length > 0 || currency || merchant || amount;
 
   const pickFile = async () => {
     try {
@@ -74,27 +75,61 @@ const CreateClaimFormScreen = () => {
       id: Date.now(), // Unique ID
       merchant,
       amount: parseFloat(amount).toFixed(2),
-      baseAmount: (parseFloat(amount) * 1.2).toFixed(2),      status: 'Pending',
-      currency
+      baseAmount: (parseFloat(amount) * 1.2).toFixed(2),
+      status: 'Pending',
+      currency,
     };
-    
+
     console.log('📝 Submitting new reimbursement:', newReimbursement);
-    
+
     addReimbursement(newReimbursement);
-    
+
     // Reset form and navigate
     setMerchant('');
     setAmount('');
     setCurrency('');
-    
+
     console.log('🚪 Navigating to Reimbursements screen');
-    navigation.navigate("Reimbursements");
+    navigation.navigate('Reimbursements');
+  };
+
+  const handleDraft = () => {
+    if (!merchant || !amount || !currency) {
+      console.log('❌ Form submission prevented - missing fields');
+      return;
+    }
+    const newReimbursement = {
+      id: Date.now(), // Unique ID
+      merchant,
+      amount: parseFloat(amount).toFixed(2),
+      baseAmount: (parseFloat(amount) * 1.2).toFixed(2),
+      status: 'Draft',
+      currency,
+    };
+
+    console.log('📝 Submitting new reimbursement:', newReimbursement);
+
+    addReimbursement(newReimbursement);
+
+    // Reset form and navigate
+    setMerchant('');
+    setAmount('');
+    setCurrency('');
+    console.log('🚪 Navigating to Reimbursements screen');
+    navigation.navigate('Reimbursements');
+  };
+
+  const handleCancel = () => {
+    setMerchant('');
+    setAmount('');
+    setCurrency('');
+    console.log('��� Navigating to Reimbursements screen');
+    navigation.goBack();
   };
 
   return (
     <ScrollView className="flex-1 bg-white px-4 py-6">
       <Text className="font-bold text-lg">Receipt(s)</Text>
-
       {/* File Upload Section */}
       <View className="flex flex-col justify-between items-center mt-4 bg-gray-100 p-6 gap-4 rounded-lg">
         {/* Upload Button */}
@@ -104,7 +139,7 @@ const CreateClaimFormScreen = () => {
             className="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center mt-2">
             <Image
               source={uploadIcon}
-              style={{ width: 24, height: 24, tintColor: 'white' }}
+              style={{width: 24, height: 24, tintColor: 'white'}}
               resizeMode="contain"
             />
           </TouchableOpacity>
@@ -116,8 +151,8 @@ const CreateClaimFormScreen = () => {
             {/* Show Image Preview */}
             {file?.type?.includes('image') && (
               <Image
-                source={{ uri: file.uri }}
-                style={{ width: 50, height: 50, marginTop: 10 }}
+                source={{uri: file.uri}}
+                style={{width: 50, height: 50, marginTop: 10}}
                 resizeMode="contain"
               />
             )}
@@ -132,8 +167,8 @@ const CreateClaimFormScreen = () => {
                   borderColor: '#ccc',
                 }}>
                 <Pdf
-                  source={{ uri: file.uri, cache: true }}
-                  style={{ flex: 1 }}
+                  source={{uri: file.uri, cache: true}}
+                  style={{flex: 1}}
                   onLoadComplete={numberOfPages => {
                     console.log(`PDF Loaded, total pages: ${numberOfPages}`);
                   }}
@@ -150,7 +185,7 @@ const CreateClaimFormScreen = () => {
               className="bg-red-500 rounded-full w-10 h-10 flex items-center justify-center">
               <Image
                 source={trashIcon}
-                style={{ width: 20, height: 20, tintColor: 'white' }}
+                style={{width: 20, height: 20, tintColor: 'white'}}
                 resizeMode="contain"
               />
             </TouchableOpacity>
@@ -201,11 +236,17 @@ const CreateClaimFormScreen = () => {
       <View className="flex justify-around flex-row w-full gap-4 mt-4">
         {/* Conditional Button: Cancel OR Save as Draft */}
         {isFormFilled ? (
-          <TouchableOpacity className="border p-4 w-[40%] items-center rounded-lg">
-            <Text className="font-bold text-lg text-blue-500">Save as Draft</Text>
+          <TouchableOpacity
+            className="border p-4 w-[40%] items-center rounded-lg"
+            onPress={handleDraft}>
+            <Text className="font-bold text-lg text-blue-500">
+              Save as Draft
+            </Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity className="border p-4 w-[40%] items-center rounded-lg">
+          <TouchableOpacity
+            className="border p-4 w-[40%] items-center rounded-lg"
+            onPress={handleCancel}>
             <Text className="font-bold text-lg text-red-500">Cancel</Text>
           </TouchableOpacity>
         )}
@@ -216,13 +257,11 @@ const CreateClaimFormScreen = () => {
             !isFormFilled ? 'opacity-50 ' : ' '
           }`}
           disabled={!isFormFilled}
-          onPress={handleSubmit}
-        >
+          onPress={handleSubmit}>
           <Text
             className={`font-bold text-lg ${
               !isFormFilled ? 'text-gray-400 ' : 'text-white '
-            }`}
-          >
+            }`}>
             Submit
           </Text>
         </TouchableOpacity>
