@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
-import {getInitials} from '../utils/getInitials';
-import {getMerchantColor} from '../utils/getRandomColor';
-
+import {getInitials} from '../utils/common';
+import {getMerchantColor} from '../utils/common';
+import {Status} from '../constants/Reimbursement';
 type Props = {
   merchant: string;
   amount: number;
@@ -33,12 +33,12 @@ export const ReimbursementCard = ({
           <Text className="text-base font-semibold">{merchant}</Text>
           <Text
             className={`text-sm ${
-              status === 'Approved'
+              status === Status.APPROVED
                 ? 'text-green-600'
-                : status === 'Pending'
+                : status === Status.PENDING
                 ? 'text-yellow-600'
-                : status === 'Draft'
-                ? 'text-blue-600'
+                : status === Status.DRAFT
+                ? 'text-gray-500'
                 : 'text-red-600'
             }`}>
             {status}

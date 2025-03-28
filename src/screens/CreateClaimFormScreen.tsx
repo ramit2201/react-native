@@ -36,7 +36,7 @@ const CreateClaimFormScreen = () => {
           </TouchableOpacity>
         )}
 
-        {selectedFiles.map((file, index) => (
+        {selectedFiles?.map((file, index) => (
           <View key={index} className="mt-2 flex flex-row items-center gap-4">
             {file?.type?.includes('image') && (
               <Image source={{ uri: file.uri }} style={{ width: 50, height: 50, marginTop: 10 }} resizeMode="contain" />

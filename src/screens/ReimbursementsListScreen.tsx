@@ -18,7 +18,7 @@ export const ReimbursementsListScreen = () => {
         />
       </View>
 
-      {filteredData.length === 0 ? (
+      {!filteredData.length  ? (
         <View className="items-center mt-40">
           <Image
             source={notFound}

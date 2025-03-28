@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import DocumentPicker from 'react-native-document-picker';
 import { useReimbursements } from '../context/ReimbursementsContext';
 import Pdf from 'react-native-pdf';
-
+import { Status } from '../constants/Reimbursement';
 const MAX_FILES = 2;
 
 export const useCreateClaim = () => {
@@ -42,7 +42,7 @@ export const useCreateClaim = () => {
   };
 
   const removeFile = (index: number) => {
-    setSelectedFiles(selectedFiles.filter((_, i) => i !== index));
+    setSelectedFiles(selectedFiles?.filter((_, i) => i !== index));
   };
 
   const handleSubmit = () => {
@@ -54,7 +54,7 @@ export const useCreateClaim = () => {
       merchant,
       amount: parseFloat(amount).toFixed(2),
       baseAmount: (parseFloat(amount) * 1.2).toFixed(2),
-      status: 'Pending',
+      status: Status.PENDING,
       currency,
     };
 
@@ -73,7 +73,7 @@ export const useCreateClaim = () => {
       merchant,
       amount: parseFloat(amount).toFixed(2),
       baseAmount: (parseFloat(amount) * 1.2).toFixed(2),
-      status: 'Draft',
+      status: Status.DRAFT,
       currency,
     };
 

@@ -14,7 +14,7 @@ export const ReimbursementsProvider = ({ children }) => {
     if (searchQuery.trim() === '') {
       setFilteredData(reimbursements);
     } else {
-      const filtered = reimbursements.filter((item) =>
+      const filtered = reimbursements?.filter((item) =>
         item.merchant.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredData(filtered);
