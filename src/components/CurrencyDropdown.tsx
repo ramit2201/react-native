@@ -1,14 +1,8 @@
 import React from "react";
 import { View } from "react-native";
 import CoreDropdown from "./core/CoreDropdown";
+import { CURRENCY_OPTIONS } from "../constants/Reimbursement";
 
-const currencyOptions = [
-  { key: "INR", value: "INR" },
-  { key: "USD", value: "USD" },
-  { key: "SGD", value: "SGD" },
-  { key: "IDR", value: "IDR" },
-  { key: "AUD", value: "AUD" },
-];
 
 interface CurrencyDropdownProps {
   selectedCurrency: string;
@@ -19,7 +13,7 @@ const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({ selectedCurrency, o
   return (
     <View>
       <CoreDropdown
-        data={currencyOptions}
+        data={CURRENCY_OPTIONS}
         selectedValue={selectedCurrency}
         onChange={onCurrencyChange}
         placeholder="Select a currency..."

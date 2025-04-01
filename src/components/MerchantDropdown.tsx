@@ -1,25 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import CoreDropdown from "./core/CoreDropdown";
-
-const merchantOptions = [
-  { key: "amazon", value: "Amazon" },
-  { key: "walmart", value: "Walmart" },
-  { key: "uber", value: "Uber" },
-  { key: "starbucks", value: "Starbucks" },
-  { key: "mcdonalds", value: "McDonald’s" },
-  { key: "apple", value: "Apple Store" },
-  { key: "google", value: "Google Play" },
-  { key: "airbnb", value: "Airbnb" },
-  { key: "expedia", value: "Expedia" },
-  { key: "costco", value: "Costco" },
-  { key: "ikea", value: "IKEA" },
-  { key: "netflix", value: "Netflix" },
-  { key: "spotify", value: "Spotify" },
-  { key: "shell", value: "Shell Gas Station" },
-  { key: "delta", value: "Delta Airlines" },
-  { key: "marriott", value: "Marriott Hotels" },
-];
+import { MERCHANT_OPTIONS } from "../constants/Reimbursement";
 
 interface MerchantDropdownProps {
   selectedMerchant: string;
@@ -30,7 +12,7 @@ const MerchantDropdown: React.FC<MerchantDropdownProps> = ({ selectedMerchant, o
   return (
     <View>
       <CoreDropdown
-        data={merchantOptions}
+        data={MERCHANT_OPTIONS}
         selectedValue={selectedMerchant}
         onChange={onMerchantChange}
         placeholder="Select a merchant..."
