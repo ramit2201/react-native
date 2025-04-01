@@ -38,52 +38,63 @@ const CreateClaimFormScreen = () => {
       <Text className="font-bold text-lg">Receipt(s)</Text>
 
       <View className="flex flex-col items-center mt-4 bg-gray-100 p-6 gap-4 rounded-lg">
-        {selectedFiles.length < 2 && (
-          <TouchableOpacity
-            onPress={pickFile}
-            className="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center mt-2">
-            <Image
-              source={uploadIcon}
-              style={{width: 24, height: 24, tintColor: 'white'}}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          onPress={pickFile}
+          className="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center mt-2">
+          <Image
+            source={uploadIcon}
+            style={{width: 24, height: 24, tintColor: 'white'}}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
 
-        {selectedFiles?.map((file, index) => (
-          <View key={index} className="mt-2 flex flex-row items-center gap-4">
-            {file?.type?.includes('image') && (
-              <Image
-                source={{uri: file.uri}}
-                style={{width: 50, height: 50, marginTop: 10}}
-                resizeMode="contain"
-              />
-            )}
-            {file?.type === 'application/pdf' && (
-              <View
-                style={{
-                  width: 50,
-                  height: 75,
-                  borderWidth: 1,
-                  borderColor: '#ccc',
-                }}>
-                <Pdf source={{uri: file.uri, cache: true}} style={{flex: 1}} />
-              </View>
-            )}
-            <TouchableOpacity
-              onPress={() => removeFile(index)}
-              className="bg-red-500 rounded-full w-10 h-10 flex items-center justify-center">
-              <Image
-                source={trashIcon}
-                style={{width: 20, height: 20, tintColor: 'white'}}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
-        ))}
+        <View className="flex flex-row items-end gap-4 mt-4">
+          {selectedFiles?.map((file, index) => (
+            <View key={index} className="flex items-center">
+              {/* Display Image */}
+              {file?.type?.includes('image') && (
+                <Image
+                  source={{uri: file.uri}}
+                  style={{width: 60, height: 60, borderRadius: 6}}
+                  resizeMode="cover"
+                />
+              )}
+
+              {/* Display PDF */}
+              {file?.type === 'application/pdf' && (
+                <View
+                  style={{
+                    width: 50,
+                    height: 70,
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 6,
+                  }}>
+                  <Pdf
+                    source={{uri: file.uri, cache: true}}
+                    style={{flex: 1}}
+                  />
+                </View>
+              )}
+
+              {/* Delete Button BELOW File */}
+              <TouchableOpacity
+                onPress={() => removeFile(index)}
+                className="bg-red-500 rounded-full w-10 h-10 flex items-center justify-center mt-2">
+                <Image
+                  source={trashIcon}
+                  style={{width: 20, height: 20, tintColor: 'white'}}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
 
         <Text className="text-gray-400 text-sm">
-          Only PDFs & images, up to 5MB. Max 2 files.
+          Only PDFs & images, up to 5MB.
         </Text>
       </View>
 
